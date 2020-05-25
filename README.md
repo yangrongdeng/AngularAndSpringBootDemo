@@ -5,6 +5,6 @@ Angular+SpringBoot+Ng-Alain+Ng-Zorro
    
    前后端正常运行，浏览器访问http://localhost:4200/#/passport/login进入登陆界面
    
-   数据库lost_and_found三张表结构见项目文件
+   数据库lost_and_found三张表结构见项目SQL文件
 
 
