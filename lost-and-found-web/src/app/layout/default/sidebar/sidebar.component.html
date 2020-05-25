@@ -1,0 +1,10 @@
+<div class="alain-default__aside-inner">
+  <div nz-dropdown nzTrigger="click"  class="alain-default__aside-user">
+    <nz-avatar class="alain-default__aside-user-avatar" [nzSrc]="settings.user.avatar"></nz-avatar>
+    <div class="alain-default__aside-user-info">
+      <strong>{{ userInfo.userName }}</strong>
+      <p class="mb0">{{ userInfo.concat }}</p>
+    </div>
+  </div>
+  <sidebar-nav class="d-block py-lg"></sidebar-nav>
+</div>

@@ -1,0 +1,56 @@
+<div class="alain-default__content-title">
+  <h1>
+    寻物列表
+        <small>寻物列表前后顺序为积分+时间进行排序， 在浏览到紧急失物时，请助他人一臂之力哦 !</small>
+  </h1>
+</div>
+<nz-alert nzBanner  nzType="info" [nzMessage]="latestFoundMessage" nzCloseable></nz-alert>
+<nz-card [nzBordered]="false">
+  <nz-list
+    nzItemLayout="vertical"
+    [nzLoading]="loading"
+    [nzDataSource]="list"
+    [nzRenderItem]="item"
+    [nzLoadMore]="loadMore"
+  >
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra" [nzActions]="[op2]">
+        <!--        <ng-template #op1> <i nz-icon nzType="star" class="mr-sm"></i>{{ item.star }}</ng-template>-->
+        <ng-template #op2><i nz-icon nzType="like" class="mr-sm" (click)="upGrade(item.id)"></i>点击，为紧急助力：{{ item.grade }}
+        </ng-template>
+        <!--        <ng-template #op3> <i nz-icon nzType="message" class="mr-sm"></i>{{ item.message }}</ng-template>-->
+        <ng-template #nzExtra>
+          <div style="width: 272px; height: 1px;"></div>
+        </ng-template>
+        <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+          <ng-template #nzTitle>
+            <a>{{ item.title}}</a>
+          </ng-template>
+          <ng-template #nzDescription>
+            <nz-tag>{{item.keyWord}}</nz-tag>
+            <nz-tag>失物</nz-tag>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #nzContent>
+          <p>{{ item.des }}</p>
+          <p><a>联系人:</a>{{ item.userName }}</p>
+          <p><a>QQ:</a>{{ item.concat }}</p>
+          <div class="mt-md d-flex">
+            <nz-avatar [nzSize]="'small'" class="mr-sm" [nzSrc]="settings.user.avatar"></nz-avatar>
+            <a href="{{ item.href }}" target="_blank">{{ item.userName }}</a>
+            <span class="px-sm">发布于</span>
+            <time class="pl-md text-grey" title="{{ item.createTime }}">{{ item.createTime | _date }}</time>
+          </div>
+
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+    <ng-template #loadMore>
+      <div class="text-center mt-md">
+        <button nz-button (click)="getMore()" [nzLoading]="loading" [nzType]="'dashed'" style="min-width:200px;">
+          加载更多
+        </button>
+      </div>
+    </ng-template>
+  </nz-list>
+</nz-card>

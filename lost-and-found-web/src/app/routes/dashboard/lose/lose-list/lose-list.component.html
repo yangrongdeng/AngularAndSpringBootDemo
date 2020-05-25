@@ -1,0 +1,55 @@
+<div class="alain-default__content-title">
+  <h1>
+    招领列表
+        <small>这里提前为失主感谢您的善意！</small>
+  </h1>
+</div>
+
+<nz-alert nzBanner  nzType="info" [nzMessage]="latestLoseMessage" nzCloseable></nz-alert>
+<nz-card [nzBordered]="false">
+  <nz-list
+    nzItemLayout="vertical"
+    [nzLoading]="loading"
+    [nzDataSource]="list"
+    [nzRenderItem]="item"
+    [nzLoadMore]="loadMore"
+  >
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="nzContent" [nzExtra]="nzExtra ">
+        <ng-template #nzExtra>
+          <div style="width: 272px; height: 1px;"></div>
+        </ng-template>
+        <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+          <ng-template #nzTitle>
+            <a>{{ item.title}}</a>
+          </ng-template>
+          <ng-template #nzDescription>
+            <nz-tag>{{item.keyWord}}</nz-tag>
+            <nz-tag>招领</nz-tag>
+          </ng-template>
+        </nz-list-item-meta>
+        <ng-template #nzContent>
+          <p>{{ item.content }}</p>
+          <p><a>联系人:</a>{{ item.userName }}</p>
+          <p><a>QQ:</a>{{ item.concat }}</p>
+          <div class="mt-md d-flex">
+            <nz-avatar [nzSrc]="item.avatar" [nzSize]="'small'" class="mr-sm"></nz-avatar>
+            <a href="{{ item.href }}" target="_blank">{{ item.userName }}</a>
+            <span class="px-sm">发布于</span>
+            <time class="pl-md text-grey" title="{{ item.createTime }}">{{ item.createTime | _date }}</time>
+          </div>
+
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+    <ng-template #loadMore>
+      <div class="text-center mt-md">
+        <button nz-button (click)="getData(true)" [nzLoading]="loading" [nzType]="'dashed'" style="min-width:200px;">
+          加载更多
+        </button>
+      </div>
+    </ng-template>
+  </nz-list>
+</nz-card>
+
+

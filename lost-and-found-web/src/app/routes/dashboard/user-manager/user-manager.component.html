@@ -1,0 +1,93 @@
+<div class="alain-default__content-title" xmlns:disabled="http://www.w3.org/1999/xhtml"
+     xmlns:disabled="http://www.w3.org/1999/xhtml">
+  <h1>
+    用户信息管理
+  </h1>
+</div>
+<button nz-button nzType="primary" style="margin-bottom: 8px" (click)="showAddModal()" >添加用户</button>
+
+<st #st
+    [columns]="columns"
+    [page]="stPage"
+    [data]="dataSet"
+    [bordered]="true"
+    [pi]="pageNum"
+    [total]="total"
+>
+</st>
+<nz-modal
+  [(nzVisible)]="addIsVisible"
+  nzTitle="添加用户"
+  (nzOnCancel)="addCancel()"
+  [nzFooter]="modalFooter"
+>
+  <form nz-form [formGroup]="addForm"  se-container="1" [labelWidth]="100" >
+    <se label="用户账号" error="请输入用户账号" required>
+      <input nz-input formControlName="userNumber"   placeholder="请输入用户账号" />
+    </se>
+    <se label="真实姓名" error="请输入真实姓名" required>
+      <input nz-input formControlName="userName" placeholder="请输入真实姓名" />
+    </se>
+    <se label="昵称" error="请输入昵称" required>
+      <input nz-input formControlName="nickName" placeholder="请输入昵称" />
+    </se>
+    <se label="密码" error="请输入密码" required>
+      <input nz-input formControlName="password" placeholder="请输入密码" />
+    </se>
+    <se label="班级" required>
+      <input nz-input formControlName="className" placeholder="请输入班级" />
+    </se>
+    <se label="联系方式" required>
+      <input nz-input formControlName="concat" placeholder="请输入联系方式" />
+    </se>
+    <se label="用户类型" required>
+      <nz-radio-group formControlName="type">
+        <label nz-radio [nzValue]="0">普通用户</label>
+        <label nz-radio [nzValue]="1">管理员</label>
+      </nz-radio-group>
+    </se>
+  </form>
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="addCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="addIsOk()"  [disabled]="this.addForm.invalid">确定</button>
+  </ng-template>
+</nz-modal>
+
+
+<nz-modal
+  [(nzVisible)]="editIsVisible"
+  nzTitle="编辑用户"
+  (nzOnCancel)="editCancel()"
+  [nzFooter]="editModalFooter"
+>
+  <form nz-form [formGroup]="editForm"  se-container="1" [labelWidth]="100" >
+    <se label="用户账号" error="请输入用户账号" required>
+      <input nz-input formControlName="userNumber"  disabled="true" placeholder="请输入用户账号" />
+    </se>
+    <se label="真实姓名" error="请输入真实姓名" required>
+      <input nz-input formControlName="userName" disabled="true" placeholder="请输入真实姓名" />
+    </se>
+    <se label="昵称" error="请输入昵称" required>
+      <input nz-input formControlName="nickName" placeholder="请输入昵称" />
+    </se>
+    <se label="密码" error="请输入密码" required>
+      <input nz-input formControlName="password" placeholder="请输入密码" />
+    </se>
+    <se label="班级" required>
+      <input nz-input formControlName="className" placeholder="请输入班级" />
+    </se>
+    <se label="联系方式" required>
+      <input nz-input formControlName="concat" placeholder="请输入联系方式" />
+    </se>
+    <se label="用户类型" required>
+      <nz-radio-group formControlName="type">
+        <label nz-radio [nzValue]="0">普通用户</label>
+        <label nz-radio [nzValue]="1">管理员</label>
+      </nz-radio-group>
+    </se>
+  </form>
+  <ng-template #editModalFooter>
+    <button nz-button nzType="default" (click)="editCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="editIsOk()"  [disabled]="this.editForm.invalid">确定</button>
+  </ng-template>
+</nz-modal>

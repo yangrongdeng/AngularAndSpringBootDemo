@@ -1,0 +1,30 @@
+<page-header [title]="'招领信息发布'">
+  请按填写要求完成表单！
+</page-header>
+<nz-card [nzBordered]="false">
+  <form nz-form [formGroup]="form" (ngSubmit)="submit()" se-container="1" labelWidth="200">
+    <se label="标题" error="请输入标题" required>
+      <input nz-input formControlName="title" placeholder="给招领信息拟定一个标题" />
+    </se>
+    <se label="关键字" error="请输入关键字" required>
+      <input nz-input formControlName="keyWord" placeholder="请提炼招领关键字" />
+    </se>
+    <se label="描述" error="请输入招领信息描述" required>
+      <textarea
+        nz-input
+        formControlName="des"
+        [nzAutosize]="{ minRows: 4 }"
+        placeholder="请输入你的招领信息详细描述"
+      ></textarea>
+    </se>
+    <se label="你的真实姓名" optionalHelp="说明：输入真实名字才可以发布，避免失物招领系统的发布混乱" error="请输入你的真实姓名" required>
+      <input nz-input formControlName="userName" placeholder="请输入你的真实姓名" />
+    </se>
+    <se label="联系方式" required>
+      <input nz-input formControlName="concat" placeholder="请输入联系方式" />
+    </se>
+    <se>
+      <button nz-button nzType="primary" [disabled]="form.invalid" type="submit" [nzLoading]="submitting">提交</button>
+    </se>
+  </form>
+</nz-card>

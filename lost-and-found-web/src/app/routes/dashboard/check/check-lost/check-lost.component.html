@@ -1,0 +1,127 @@
+<div class="alain-default__content-title">
+  <h1>
+    招领信息审核
+  </h1>
+</div>
+
+<nz-tabset>
+  <nz-tab nzTitle="未审核">
+    <nz-card [nzBordered]="false">
+      <nz-list
+        nzItemLayout="vertical"
+        [nzLoading]="noCheckLoading"
+        [nzDataSource]="noCheckList"
+        [nzRenderItem]="item0"
+      >
+        <ng-template #item0 let-item>
+          <nz-list-item [nzContent]="nzContent0" [nzExtra]="nzExtra0" >
+            <ng-template #nzExtra0>
+              <div style="width: 272px; height: 1px;" >
+                <button nz-button nzType="primary" (click)="pass(item.id)">审核通过</button>
+                <button nz-button nzType="danger" (click)="noPass(item.id)">审核不通过</button>
+              </div>
+            </ng-template>
+            <nz-list-item-meta [nzTitle]="nzTitle0" [nzDescription]="nzDescription0">
+              <ng-template #nzTitle0>
+                <a>主题：{{ item.title}}</a>
+              </ng-template>
+              <ng-template #nzDescription0>
+                <nz-tag>{{item.keyWord}}</nz-tag>
+                <nz-tag>招领</nz-tag>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #nzContent0>
+              <p><a>描述:</a>{{ item.des }}</p>
+              <p><a>联系人:</a>{{ item.userName }}</p>
+              <p><a>联系方式:</a>{{ item.concat }}</p>
+              <div class="mt-md d-flex">
+                <span class="px-sm">发布于</span>
+                <time class="pl-md text-grey" title="{{ item.createTime }}">{{ item.createTime | _date }}</time>
+              </div>
+
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </nz-card>
+  </nz-tab>
+  <nz-tab nzTitle="审核通过" (nzClick)="getAlreadyCheckList()">
+    <nz-card [nzBordered]="false">
+      <nz-list
+        nzItemLayout="vertical"
+        [nzLoading]="alreadyCheckLoading"
+        [nzDataSource]="alreadyCheckList"
+        [nzRenderItem]="item1"
+      >
+        <ng-template #item1 let-item>
+          <nz-list-item [nzContent]="nzContent1" [nzExtra]="nzExtra1">
+            <ng-template #nzExtra1>
+              <div style="width: 272px; height: 1px;" >
+                <button nz-button nzType="dashed">审核通过</button>
+              </div>
+            </ng-template>
+            <nz-list-item-meta [nzTitle]="nzTitle1" [nzDescription]="nzDescription1">
+              <ng-template #nzTitle1>
+                <a>主题：{{ item.title}}</a>
+              </ng-template>
+              <ng-template #nzDescription1>
+                <nz-tag>{{item.keyWord}}</nz-tag>
+                <nz-tag>招领</nz-tag>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #nzContent1>
+              <p><a>描述:</a>{{ item.des }}</p>
+              <p><a>联系人:</a>{{ item.userName }}</p>
+              <p><a>联系方式:</a>{{ item.concat }}</p>
+              <div class="mt-md d-flex">
+                <span class="px-sm">发布于</span>
+                <time class="pl-md text-grey" title="{{ item.createTime }}">{{ item.createTime | _date }}</time>
+              </div>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </nz-card>
+  </nz-tab>
+
+  <nz-tab nzTitle="审核未通过" (nzClick)="getNoPassCheckList()">
+    <nz-card [nzBordered]="false">
+      <nz-list
+        nzItemLayout="vertical"
+        [nzLoading]="noPassCheckLoading"
+        [nzDataSource]="noPassCheckList"
+        [nzRenderItem]="item2"
+      >
+        <ng-template #item2 let-item>
+          <nz-list-item [nzContent]="nzContent2" [nzExtra]="nzExtra2" >
+            <ng-template #nzExtra2>
+              <div style="width: 272px; height: 1px;" >
+                <button nz-button nzType="dashed" nzDanger >不通过</button>
+              </div>
+            </ng-template>
+            <nz-list-item-meta [nzTitle]="nzTitle2" [nzDescription]="nzDescription2">
+              <ng-template #nzTitle2>
+                <a>主题：{{ item.title}}</a>
+              </ng-template>
+              <ng-template #nzDescription2>
+                <nz-tag>{{item.keyWord}}</nz-tag>
+                <nz-tag>失物</nz-tag>
+              </ng-template>
+            </nz-list-item-meta>
+            <ng-template #nzContent2>
+              <p><a>描述:</a>{{ item.des }}</p>
+              <p><a>联系人:</a>{{ item.userName }}</p>
+              <p><a>联系方式:</a>{{ item.concat }}</p>
+              <div class="mt-md d-flex">
+                <span class="px-sm">发布于</span>
+                <time class="pl-md text-grey" title="{{ item.createTime }}">{{ item.createTime | _date }}</time>
+              </div>
+
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </nz-card>
+
+  </nz-tab>
+</nz-tabset>

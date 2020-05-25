@@ -1,0 +1,15 @@
+<page-header [title]="'密码修改'">
+</page-header>
+<nz-card  nzTitle="修改密码" >
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submit()" se-container gutter="32">
+    <se label="旧密码" [error]="{ required: '旧密码不能为空' }">
+      <input formControlName="oldPassword" nz-input  placeholder="请输入旧密码!">
+    </se>
+    <se label="新密码" error="新密码不能为空!">
+      <input formControlName="newPassword" nz-input  placeholder="请输入新密码!">
+    </se>
+    <se>
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">确认修改</button>
+    </se>
+  </form>
+</nz-card>
